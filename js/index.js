@@ -9,12 +9,29 @@ var indexApp = {
 	},
 
 	computed: {
-		diff () {
+		diffChars () {
 			return JsDiff.diffChars(this.str1, this.str2)
 		},
+		diffLines () {
+			return JsDiff.diffLines(this.str1, this.str2)
+		},
 		strDiff () {
-			if (this.diff) {
-				return this.diff.reduce((prev, curr) => prev + this.diff2HtmlTag(curr), '')
+			if (this.diffChars) {
+				return this.diffChars.reduce((prev, curr) => prev + this.diff2InlineTag(curr), '')
+			} else {
+				return null
+			}
+		},
+		strDiffSideRemoved () {
+			if (this.diffLines) {
+				return this.diffLines.reduce((prev, curr) => prev + this.diff2RemovedTag(curr), '')
+			} else {
+				return null
+			}
+		},
+		strDiffSideAdded () {
+			if (this.diffLines) {
+				return this.diffLines.reduce((prev, curr) => prev + this.diff2AddedTag(curr), '')
 			} else {
 				return null
 			}
@@ -22,11 +39,29 @@ var indexApp = {
 	},
 
 	methods: {
-		diff2HtmlTag (obj) {
+		diff2InlineTag (obj) {
 			if (obj.added) {
 				return '<ins>' + obj.value + '</ins>'
 			} else if (obj.removed) {
 				return '<del>' + obj.value + '</del>'
+			} else {
+				return obj.value
+			}
+		},
+		diff2RemovedTag (obj) {
+			if (obj.added) {
+				return ''
+			} else if (obj.removed) {
+				return '<del>' + obj.value + '</del>'
+			} else {
+				return obj.value
+			}
+		},
+		diff2AddedTag (obj) {
+			if (obj.added) {
+				return '<ins>' + obj.value + '</ins>'
+			} else if (obj.removed) {
+				return ''
 			} else {
 				return obj.value
 			}
@@ -45,6 +80,7 @@ var indexApp = {
 var article1 = `美國時間10月21日，Google母公司Alphabet旗下的Project Loon項目有了新進展。
 
 該項目的負責人Alastair Westgarth發文表示，Project Loon的氣球正搭載通信設備，在波多黎各上空為當地提供通信服務，並首次使用人工智能來控制其漂浮狀態。
+
 Project Loon的氣球由地面一個大型的發射塔來放出升空，通過與地面通信系統進行配合，在空中發揮手機信號發射塔的作用，為當地用戶提供通訊服務。
 
 這些氣球的主體由聚乙烯帆布製成，每個有網球場那麼大，在距離地面約20公里的同溫層中工作氣球下方掛載通訊設備，並使用太陽能作為動力，能持續在空中停留100天，最長記錄曾長達190天。

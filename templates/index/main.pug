@@ -18,3 +18,11 @@
       h3.title.has-text-centered
         | VersionDiff
       .diff-content(v-html="strDiff")
+  .section
+    h3.title.has-text-centered
+      | Side by Side
+    .columns
+      .column
+        .diff-content(v-html="strDiffSideRemoved")
+      .column
+        .diff-content(v-html="strDiffSideAdded")
