@@ -1,18 +1,20 @@
 #app.container
-  h1.title
-    | JS Diff test
-  .columns
-    .column
-      h3.subtitle
-        | Version1
-      .content
-        textarea.textarea(v-model="str1")
-    .column
-      h3.subtitle
-        | Version2
-      .content
-        textarea.textarea(v-model="str2")
-  .diff
-    h3.subtitle
-      | VersionDiff
-    .diff-content(v-html="strDiff")
+  .section
+    h1.title.is-1.has-text-centered
+      | JS Diff test
+    .columns
+      .column
+        h3.title.has-text-centered
+          | Version1
+        .content
+          textarea.textarea(v-model="str1")
+      .column
+        h3.title.has-text-centered
+          | Version2
+        .content
+          textarea.textarea(v-model="str2")
+  .section
+    .diff
+      h3.title.has-text-centered
+        | VersionDiff
+      .diff-content(v-html="strDiff")

@@ -1,4 +1,9 @@
 /* css style for layout.pug */
+
+.container .section:not(:first-child) {
+	border-top: 1px solid #e2e2e2;
+}
+
 .diff-content {
 	white-space: pre-line;
 }
@@ -9,5 +14,10 @@
 }
 
 .diff-content ins {
+	text-decoration: none;
 	background-color: #97f295;
+}
+
+.content .textarea {
+	min-height: 240px;
 }
