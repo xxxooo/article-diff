@@ -1,0 +1,13 @@
+/* css style for layout.pug */
+.diff-content {
+	white-space: pre-line;
+}
+
+.diff-content del {
+	text-decoration: none;
+	background-color: #ffb6ba;
+}
+
+.diff-content ins {
+	background-color: #97f295;
+}
