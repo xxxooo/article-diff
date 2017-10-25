@@ -16,11 +16,15 @@
   .section
     .diff
       h3.title.has-text-centered
-        | VersionDiff
-      .diff-content(v-html="strDiff")
+        | Inline Diff
+      .columns
+        .column
+        .column.is-two-thirds
+          .diff-content(v-html="strDiffInline")
+        .column
   .section
     h3.title.has-text-centered
-      | Side by Side
+      | Side by Side Diff
     .columns
       .column
         .diff-content(v-html="strDiffSideRemoved")
